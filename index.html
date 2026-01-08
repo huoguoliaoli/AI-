@@ -2,12 +2,35 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI 工具导航</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1 class="title">AI 网站推荐</h1>
+<header class="header">
+  <div class="header-content">
+    <div class="search-container">
+      <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"></circle>
+        <path d="m21 21-4.35-4.35"></path>
+      </svg>
+      <input type="text" class="search-input" id="searchInput" placeholder="搜索" />
+    </div>
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="chat">对话</button>
+      <button class="filter-btn" data-filter="image">图像</button>
+      <button class="filter-btn" data-filter="design">设计</button>
+      <button class="filter-btn" data-filter="3d">3D建模</button>
+      <button class="filter-btn" data-filter="architecture">建筑</button>
+      <button class="filter-btn" data-filter="media">媒体</button>
+      <button class="filter-btn" data-filter="video">视频</button>
+      <button class="filter-btn" data-filter="tools">工具</button>
+      <button class="filter-btn" data-filter="other">其他</button>
+    </div>
+  </div>
+</header>
 
 <div class="masonry" id="list"></div>
 
