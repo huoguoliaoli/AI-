@@ -16,7 +16,7 @@ const aiSites = [
   {
     id: 3,
     name: "Notion AI",
-    cover: "https://via.placeholder.com/400x700",
+    cover: "images/notion.png",
     desc: "智能写作与笔记",
     url: "https://www.notion.so"
   }
