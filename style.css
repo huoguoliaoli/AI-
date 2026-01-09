@@ -15,18 +15,18 @@ body {
 }
 
 .header-content {
-  max-width: 1400px;
+  max-width: min(1400px, 100%);
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: clamp(10px, 1.5vw, 16px) clamp(16px, 2vw, 24px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: clamp(12px, 2vw, 24px);
 }
 
 .search-container {
   flex: 1;
-  max-width: 400px;
+  max-width: min(400px, 100%);
   position: relative;
   display: flex;
   align-items: center;
@@ -62,12 +62,12 @@ body {
 }
 
 .filter-btn {
-  padding: 8px 16px;
+  padding: clamp(6px, 1vw, 10px) clamp(12px, 1.5vw, 18px);
   border: 1px solid #e0e0e0;
-  border-radius: 20px;
+  border-radius: clamp(16px, 2vw, 24px);
   background: #fff;
   color: #333;
-  font-size: 14px;
+  font-size: clamp(12px, 1.5vw, 15px);
   cursor: pointer;
   transition: all 0.2s;
   white-space: nowrap;
@@ -84,19 +84,29 @@ body {
   border-color: #000;
 }
 
-/* 瀑布流核心 */
+/* 瀑布流核心 - Eagle风格：固定卡片宽度，动态列数 */
 .masonry {
-  column-count: 4;
-  column-gap: 16px;
-  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--card-width, 250px));
+  gap: var(--card-gap, 16px);
+  padding: var(--masonry-padding, 20px);
+  width: 100%;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+/* 确保瀑布流容器有合适的最大宽度 */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: #f7f7f7;
+  overflow-x: hidden;
 }
 
 .card {
-  break-inside: avoid;
   background: #fff;
-  border-radius: 16px;
+  border-radius: var(--card-radius, 12px);
   overflow: hidden;
-  margin-bottom: 16px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
@@ -104,6 +114,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
+  width: var(--card-width, 250px);
+  box-sizing: border-box;
 }
 
 .card > img {
@@ -147,6 +159,7 @@ body {
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -158,7 +171,7 @@ body {
   left: 0;
   right: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
-  padding: 16px 14px 12px;
+  padding: 14px 12px 10px;
   opacity: 0;
   transition: opacity 0.2s;
   z-index: 2;
@@ -183,30 +196,28 @@ body {
   line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
 
-/* 响应式 */
-@media (max-width: 1200px) {
-  .masonry { column-count: 3; }
-  .header-content {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .search-container {
-    max-width: 100%;
-  }
-}
+/* 响应式 - 小屏幕适配 */
 @media (max-width: 768px) {
-  .masonry { column-count: 2; }
+  .masonry {
+    padding: 12px;
+    gap: 12px;
+  }
   .header-content {
     padding: 10px 16px;
   }
 }
+
 @media (max-width: 480px) {
-  .masonry { column-count: 1; }
+  .masonry {
+    padding: 10px;
+    gap: 10px;
+  }
   .filter-container {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
